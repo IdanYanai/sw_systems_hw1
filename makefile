@@ -2,7 +2,7 @@ CC=gcc
 AR=ar
 FLAGS= -Wall -g
 
-all: mains maindloop maindrec
+all: mains maindloop maindrec loops
 
 mains : main.o libclassrec.a
 	$(CC) $(FLAGS) -o $@ main.o libclassrec.a
@@ -37,15 +37,15 @@ main.o : main.c NumClass.h
 	$(CC) $(FLAGS) -c $<
 
 basicClassification.o : basicClassification.c NumClass.h
-	$(CC) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -c -fpic $<
 
 advancedClassificationLoop.o : advancedClassificationLoop.c NumClass.h
-	$(CC) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -c -fpic $<
 
 advancedClassificationRecursion.o : advancedClassificationRecursion.c NumClass.h
-	$(CC) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -c -fpic $<
 
-.PHONY: clean
+.PHONY: clean recursived loopd recursives loops maindrec maindloop mains all
 
 clean:
 	rm -f *.o *.so *.a mains maindloop maindrec
